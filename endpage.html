@@ -126,9 +126,21 @@ body, html {
 <div id="hearts-container"></div>
 
 <!-- Background music (autoplay may be blocked on some browsers) -->
-<audio id="bgMusic" autoplay loop>
+<audio id="bgMusic" loop>
   <source src="love-song2.mp3" type="audio/mpeg">
 </audio>
+  <script>
+const music = document.getElementById("bgMusic");
+
+function startMusic() {
+  music.play();
+  document.removeEventListener("click", startMusic);
+  document.removeEventListener("touchstart", startMusic);
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+</script>
 
 <!-- Thanks message -->
 <div id="thanks" class="thanks">Thanks for watching… 💖</div>
@@ -188,6 +200,7 @@ window.onload = function() {
 
 </body>
 </html>
+
 
 
 
