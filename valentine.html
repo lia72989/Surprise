@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Valentine Letter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="valentine-body">
+
+  <!-- Envelope -->
+  <div class="envelope-container" onclick="openLetter()">
+    <img src="images/envelope.png" class="envelope" alt="Envelope">
+    <p class="click-text">Click the envelope 💌</p>
+  </div>
+
+  <!-- Letter Container (hidden first) -->
+  <div class="letter-container" id="letterContainer">
+    <img src="images/letter-image.jpg" class="letter" alt="Love Letter">
+    <button onclick="goNext()">Next ➡️</button>
+  </div>
+
+  <!-- Background Song -->
+  <audio id="valentineSong" src="sounds/love-song.mp3" loop></audio>
+
+  <!-- Floating Hearts -->
+  <div id="hearts-container"></div>
+
+  <script>
+
+    function openLetter() {
+      // Hide envelope
+      document.querySelector(".envelope-container").style.display = "none";
+
+      // Show letter
+      const letterBox = document.getElementById("letterContainer");
+      letterBox.style.display = "flex";
+
+      const letter = document.querySelector(".letter");
+      letter.classList.add("fly-out");
+
+      // Play music
+      const song = document.getElementById("valentineSong");
+      song.play().catch(() => {});
+
+      createHearts(25);
+    }
+
+    function goNext() {
+      window.location.href = "cat-scene.html";
+    }
+
+    function createHearts(count){
+      const container = document.getElementById("hearts-container");
+
+      for(let i = 0; i < count; i++){
+        const heart = document.createElement("div");
+        heart.classList.add("confetti-heart");
+
+        heart.style.left = Math.random()*100 + "%";
+        heart.style.top = "-20px";
+        heart.style.fontSize = (10 + Math.random()*20) + "px";
+        heart.innerHTML = "❤️";
+
+        container.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 4000);
+      }
+    }
+
+  </script>
+
+</body>
+</html>
+
+

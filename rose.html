@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Virtual Bouquet</title>
+
+  <!-- Google Cursive Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff0f5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .rose-image {
+      width: 300px;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 45px;
+      color: #b03060;
+      margin-bottom: 30px;
+    }
+
+    .next-btn {
+      padding: 12px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      background-color: #d63384;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .next-btn:hover {
+      background-color: #b03060;
+      transform: scale(1.05);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body>
+
+  <img src="images/rose.png" alt="Rose" class="rose-image">
+
+  <h1>A virtual bouquet for you 💐</h1>
+
+  <!-- Next Button -->
+  <button class="next-btn" onclick="goToEnd()">Next ➜</button>
+
+  <script>
+    function goToEnd() {
+      window.location.href = "endpage.html";
+    }
+  </script>
+
+</body>
+</html>

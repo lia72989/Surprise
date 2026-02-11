@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reasons I Love You</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    /* Horizontal jars centered */
+    .jars-row {
+      display: flex;
+      gap: 50px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .jar-container {
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .jar-container img {
+      width: 250px;
+      transition: transform 0.3s ease;
+    }
+
+    .jar-container:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Boxes container */
+    .boxes-container {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 700px;
+      margin-bottom: 30px;
+      z-index: 5;
+    }
+
+    .reason-box {
+      width: 60px;
+      height: 60px;
+      background-color: #ffb6c1;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .reason-box:hover {
+      transform: scale(1.1);
+      background-color: #ff69b4;
+    }
+
+    .reason-display {
+      margin-top: 20px;
+      background-color: #fff0f5;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      text-align: center;
+      font-size: 18px;
+      color: #b03060;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      min-height: 50px;
+      z-index: 5;
+    }
+
+    .next-arrow-container {
+      margin-top: 30px;
+      z-index: 5;
+    }
+
+    .next-arrow-container button {
+      font-size: 24px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .next-arrow-container button:hover {
+      transform: scale(1.1);
+      background-color: #ff4da6;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="song.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+
+  <!-- Horizontal jars centered -->
+  <div class="jars-row">
+    <!-- JAR 1 -->
+    <div class="jar-container" onclick="openJar(event, 'jar1')">
+      <img src="images/jar.png" alt="15 Reasons Jar">
+      <p>15 Reasons I Love You 💖</p>
+    </div>
+
+    <!-- JAR 3 -->
+    <div class="jar-container" onclick="openJar(event, 'jar3')">
+      <img src="images/jar3.png" alt="More Reasons">
+      <p>More Reasons 💕</p>
+    </div>
+  </div>
+
+  <!-- Boxes containers -->
+  <div id="jar1" class="boxes-container"></div>
+  <div id="jar3" class="boxes-container"></div>
+
+  <!-- Reason display -->
+  <div class="reason-display" id="reasonDisplay"></div>
+
+  <!-- Next page button -->
+  <div class="next-arrow-container">
+    <button onclick="goToEndPage()">➡️ Next</button>
+  </div>
+
+  <script>
+    const reasonsJar1 = [
+      "Your craziness 😜","How you feel like home/peace 🏡","Your cuteness 🥰",
+      "Your smile 😁","Inside jokes 🤫","Your sarcasm 😏",
+      "The way you make me laugh 😂","The way you talk 🗣️","Your virtual hugs 🤗",
+      "Your intelligence 🧠","How you care 💕","Your quirks 🫣",
+      "How you always brighten my day ☀️","The way you make every moment special ✨",
+      "Simply YOU 😘"
+    ];
+
+    const reasonsJar3 = [
+      "You make me fight for the fairytale",
+      "None of your scars could make me love you less",
+      "You are my prince charming",
+      "You respect me",
+      "I will be glad when you call and I miss you when you don’t call",
+      "With you, I am my most beautiful self",
+      "You let sunshine into my life",
+      "I want to make your bad days better",
+      "You demolished the walls around me",
+      "It’s not hard work loving you",
+      "You need me… of a million tiny little things…",
+      "You have a place in my heart no one else could ever have",
+      "Our love lasts…",
+      "You loved me enough to spend the rest of your life with me",
+      "I am your choice",
+      "You give me direction",
+      "You are my dream come true",
+      "You helped me unpack my baggage",
+      "We share a quiet confidence between each other",
+      "You are the risk I will always take",
+      "Love is composed of a single soul inhabiting two bodies – Aristotle",
+      "You are my lover",
+      "The best is yet to come",
+      "You have a beautiful soul",
+      "My happiness matters to you",
+      "You’re my spark in the dark",
+      "You are interested in what is going on in my head!",
+      "We are one…",
+      "You are my hero",
+      "I want us to be everything we are supposed to be",
+      "You are soft with me, even though you’re strong",
+      "I can count on you",
+      "An invisible thread connects us",
+      "I vow to still grab your butt, even when you’re old and wrinkly!",
+      "Your love is a commitment to protect my heart with the same passion you use to guard yours",
+      "You are willing to forgive",
+      "We share the same umbrella and survive the storms together",
+      "You pray for our protection, love and health each and every day"
+    ];
+
+    function openJar(event, jarId) {
+      event.stopPropagation(); // prevent document click
+      const container = document.getElementById(jarId);
+
+      // Hide other jars' boxes
+      document.querySelectorAll('.boxes-container').forEach(box => {
+        if (box.id !== jarId) box.style.display = 'none';
+      });
+
+      // Toggle current jar
+      container.style.display = container.style.display === "flex" ? "none" : "flex";
+
+      // Generate boxes if not already created
+      if (container.children.length === 0) {
+        const reasons = jarId === 'jar1' ? reasonsJar1 : reasonsJar3;
+        reasons.forEach((reason, index) => {
+          const box = document.createElement("div");
+          box.classList.add("reason-box");
+          box.textContent = index + 1;
+          box.onclick = (e) => {
+            e.stopPropagation();
+            showReason(reason);
+          };
+          container.appendChild(box);
+        });
+      }
+    }
+
+    function showReason(reasonText) {
+      document.getElementById("reasonDisplay").textContent = reasonText;
+    }
+
+    function goToEndPage() {
+      window.location.href = "rose.html";
+    }
+
+    // Hide boxes if clicking anywhere else
+    document.addEventListener('click', function(event) {
+      document.querySelectorAll('.boxes-container').forEach(box => {
+        box.style.display = 'none';
+      });
+    });
+
+  </script>
+
+</body>
+</html>

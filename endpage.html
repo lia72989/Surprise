@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The End</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #fff0f5;
+      overflow: hidden;
+      background-image: url('images/credits-bg.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Floating hearts */
+    #hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .confetti-heart {
+      position: absolute;
+      color: red;
+      font-size: 12px;
+      animation: fallAndDrift 4s linear forwards;
+    }
+    @keyframes fallAndDrift {
+      0% { transform: translateY(0) rotate(0deg); opacity:1; }
+      100% { transform: translateY(600px) rotate(360deg); opacity:0; }
+    }
+
+    /* Credits */
+    .credits-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 2;
+    }
+    .credits {
+      position: absolute;
+      bottom: -100%;
+      width: 100%;
+      text-align: center;
+      color: #d63384;
+      font-size: 24px;
+      animation: scrollCredits 20s linear forwards;
+    }
+    .credits p {
+      margin: 15px 0;
+    }
+    @keyframes scrollCredits {
+      0% { bottom: -100%; }
+      100% { bottom: 120%; }
+    }
+
+    /* Thanks message */
+    .thanks {
+      position: absolute;
+      top: 10%;
+      width: 100%;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #d63384;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 2s ease-in;
+    }
+    .thanks.show { opacity: 1; }
+
+    /* THE END centered */
+    .the-end {
+      position: fixed; /* independent of credits */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 100px; /* bigger */
+      font-weight: bold;
+      color: #d63384;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 2s ease-in;
+    }
+    .the-end.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts -->
+  <div id="hearts-container"></div>
+
+  <!-- Background music -->
+  <audio src="sounds/love-song2.mp3" autoplay loop></audio>
+
+  <!-- Thanks message -->
+  <div id="thanks" class="thanks">Thanks for watching…</div>
+
+  <!-- Credits -->
+  <div class="credits-container">
+    <div id="credits" class="credits">
+      <p>Directed by: Imalshi </p>
+      <p>Written by: Imalshi </p>
+      <p>Special Thanks: My love 💖</p>
+      <p>Design & Animations: Imalshi </p>
+      <p>Music: Every Breath You Take </p>
+      <p>Images: Personalized Memories</p>
+      <p>Powered by Love ❤️</p>
+    </div>
+  </div>
+
+  <!-- The End -->
+  <div id="theEnd" class="the-end">THE END</div>
+
+  <script>
+    // Floating hearts
+    function createHearts(count){
+      const container = document.getElementById("hearts-container");
+      for(let i=0;i<count;i++){
+        const heart = document.createElement("div");
+        heart.classList.add("confetti-heart");
+        heart.style.left = Math.random()*90 + "%";
+        heart.style.top = "-20px";
+        heart.style.fontSize = (10 + Math.random()*15) + "px";
+        heart.innerHTML = "❤️";
+        container.appendChild(heart);
+        setTimeout(()=>heart.remove(),4000);
+      }
+    }
+    setInterval(()=>createHearts(5),800);
+
+    window.onload = function() {
+      // Show thanks message immediately
+      document.getElementById("thanks").classList.add("show");
+
+      // Show "THE END" after credits scroll (20s animation + 2s buffer)
+      setTimeout(()=>{
+        document.getElementById("theEnd").classList.add("show");
+      }, 22000); 
+    }
+  </script>
+
+</body>
+</html>
+
+

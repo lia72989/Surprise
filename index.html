@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Secret Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="secret-bg">
+
+  <div class="box">
+    <h1>Enter the Password</h1>
+    <input type="password" id="password" placeholder="Password">
+
+    <div class="btn-group">
+      <button onclick="checkPassword()">Enter</button>
+      <button onclick="showHint()">Hint</button>
+    </div>
+
+    <p id="error"></p>
+  </div>
+
+  <div id="heart-container"></div>
+  <audio id="chime" src="sounds/chime.mp3"></audio>
+
+  <script>
+    function showHint(){ alert("anniversary"); }
+
+    function checkPassword(){
+      const password = document.getElementById("password").value;
+      if(password === "26/01/2026"){
+        document.getElementById("chime").play();
+        setTimeout(()=>{ window.location.href="memories.html"; }, 500);
+      } else {
+        document.getElementById("error").innerText="Password incorrect";
+      }
+    }
+
+    // Floating hearts effect
+    const container = document.getElementById("heart-container");
+    document.addEventListener("mousemove", e => {
+      const heart = document.createElement("div");
+      heart.classList.add("floating-heart");
+      heart.style.left = e.pageX + "px";
+      heart.style.top = e.pageY + "px";
+      container.appendChild(heart);
+      setTimeout(()=>heart.remove(), 2000);
+    });
+  </script>
+</body>
+</html>

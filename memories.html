@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Memories</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="memories-bg">
+
+  <div class="box">
+    <h1>💖 Our Memories 💖</h1>
+
+    <!-- Memory Boxes -->
+    <div class="memory-box" onclick="showMemory(1)">Where it began</div>
+    <div class="memory-box" onclick="showMemory(2)">First call</div>
+    <div class="memory-box" onclick="showMemory(3)">First banter</div>
+    <div class="memory-box" onclick="showMemory(4)">Where it became real</div>
+    <div class="memory-box" onclick="showMemory(5)">Matching… and loving it 💕</div>
+
+    <!-- Image display area -->
+    <div class="image-area">
+      <img id="memoryImage" src="" alt="">
+    </div>
+
+    <button onclick="goNext()">Next ➡️</button>
+  </div>
+
+  <!-- Background music -->
+  <audio id="memoriesMusic" src="sounds/romantic.mp3" loop></audio>
+
+  <!-- Confetti hearts container -->
+  <div id="hearts-container"></div>
+
+  <script>
+    // Show memory image with animation, music, and hearts
+    function showMemory(num){
+      const img = document.getElementById("memoryImage");
+      img.src = "images/photo"+num+".jpg";
+      img.style.display = "block";
+      img.classList.add("zoom-animation");
+
+      // Play background music
+      document.getElementById("memoriesMusic").play();
+
+      // Trigger floating hearts
+      createHearts(15);
+
+      // Remove zoom class after animation
+      setTimeout(()=>img.classList.remove("zoom-animation"), 800);
+    }
+
+    // Floating hearts function
+    function createHearts(count){
+      const container = document.getElementById("hearts-container");
+      for(let i=0; i<count; i++){
+        const heart = document.createElement("div");
+        heart.classList.add("confetti-heart");
+        heart.innerText = "❤️"; // heart emoji
+        heart.style.left = Math.random() * 90 + "%"; // random horizontal
+        heart.style.top = "-20px"; // start above
+        heart.style.fontSize = (10 + Math.random() * 15) + "px"; // random size
+        container.appendChild(heart);
+
+        // Remove heart after 2 seconds
+        setTimeout(()=>heart.remove(), 2000);
+      }
+    }
+
+    // Next button redirects to the love letter page
+    function goNext(){
+      window.location.href="valentine.html"; // make sure your love letter page is named valentine.html
+    }
+  </script>
+
+</body>
+</html>
+
