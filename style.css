@@ -11,7 +11,7 @@ body {
   margin: 0;
   height: 100vh;
   width: 100%;
-  background-image: url("images/background.jpg"); /* your image */
+  background-image: url("background.jpg"); /* your image */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -81,7 +81,7 @@ input {
 /* ================= MEMORIES PAGE ================= */
 .memories-bg {
   min-height: 100vh;
-  background-image: url("images/memories-bg.jpg"); /* your background image */
+  background-image: url("memories-bg.jpg"); /* your background image */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -418,5 +418,6 @@ button:hover {
   transform: translateY(100%);
   animation: scrollCredits 20s linear forwards; /* faster scroll */
 }
+
 
 
